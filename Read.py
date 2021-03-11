@@ -17,14 +17,14 @@ def main():
     port.open()
     time.sleep(0.2)
     try:
-        data = port.read(32);
-        if ord(data[0]) == 66 and ord(data[1]) == 77:
+        data = port.read(32)
+        if data[0] == 66 and data[1] == 77:
             suma = 0
             for a in range(30):
-                suma += ord(data[a])
-            if suma == ord(data[30])*256+ord(data[31]):
-                PM25 = int(ord(data[6])*256+ord(data[7]))
-                PM10 = int((ord(data[8])*256+ord(data[9]))/0.75)
+                suma += data[a]
+            if suma == data[30]*256+data[31]:
+                PM25 = int(data[6]*256+data[7])
+                PM10 = int((data[8]*256+data[9])/0.75)
                 print('PM2.5: {} ug/m3'.format(PM25))
                 print('PM10: {} ug/m3'.format(PM10))
                 datetime = strftime("%Y-%m-%d %H:%M:%S", localtime())
